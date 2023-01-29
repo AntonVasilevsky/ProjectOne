@@ -1,0 +1,10 @@
+1. При десериализации конструктор объекта не вызвывается, но вызываются конструкторы класса родителя.
+2. При десериализации транзиент полям присваивается значение по умолчанию.
+3. Класс объектов-полей должен быть сериалайзебл.
+4. При Экстрналайзебл если поле файнал, то не меняется, потому что вызываается конструктор.
+5. Transient когда мы не хотим передавать поле вместе с объектом, после десериализации поле будет по умолчанию
+6. Если класс родитель не сериалайзебл, то при дес. супер поля в наследнике будум по умолчанию
+7. It is also strongly advised that explicit serialVersionUID declarations use the private modifier where possible,
+    since such declarations apply only to the immediately declaring class — serialVersionUID fields are not useful as
+    inherited members.
+9.

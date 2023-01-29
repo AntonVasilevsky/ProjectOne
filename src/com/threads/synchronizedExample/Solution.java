@@ -7,6 +7,7 @@ import java.util.Random;
 
 public class Solution {
     public static void main(String[] args) {
+
         new Worker().main();
     }
 }
@@ -77,7 +78,7 @@ class Worker {
     }
 
     public void work() {
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 5; i++) {
             addToListOne();
             addToListTwo();
         }
