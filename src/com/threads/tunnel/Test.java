@@ -9,21 +9,24 @@ public class Test {
 
         Operator op = new Operator();
 
+
         Thread t1 = new Thread(new Runnable() {
             @Override
             public void run() {
-              
+                op.operate();
             }
         });
-        Thread t2 = new Thread(new Runnable() {
+
+        Thread t3 = new Thread(new Runnable() {
             @Override
             public void run() {
-
+                op.trainGenerator();
             }
         });
-        t2.start();
+        t3.start();
 
         t1.start();
+
 
 
 
