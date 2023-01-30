@@ -13,11 +13,13 @@ public class Main {
             west.submit(new Train()); // how to get thread name?
             east.submit(new Train());
             try {
-                Thread.sleep(1000);
+                Thread.sleep(10);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
+        east.close();
+        west.close();
 
 
     }
