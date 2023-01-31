@@ -7,13 +7,14 @@ import java.util.Date;
 public class Train implements Runnable{
     private static int counter = 1;
     private int id;
-    private static Tunnel tunnel = new Tunnel();
-    private static Tunnel tunnel1 = new Tunnel();
+    private static Tunnel tunnelNorth = new Tunnel();
+    private static Tunnel tunnelSouth = new Tunnel();
 
 
     public Train() {
         id = counter;
         counter++;
+
 
     }
 
@@ -27,14 +28,20 @@ public class Train implements Runnable{
 
     @Override
     public void run() {
-        operate();
+
+       if(getId()%2 ==0){
+           operateNorth();
+       }else {
+           operateSouth();
+       }
+
     }
-    public  void operate(){
+    public  void operateNorth(){
         long startTime = System.currentTimeMillis();
         long elapsedTime = 0l;
         while (elapsedTime<2000) {
             elapsedTime = (new Date()).getTime() - startTime;
-            synchronized (tunnel) {
+            synchronized (tunnelNorth) {
                 System.out.println("Train " + getId() + " North tunnel in thread "
                         + Thread.currentThread().getName());
                 try {
@@ -46,15 +53,15 @@ public class Train implements Runnable{
             }
         }
         System.out.println("Train " + getId() + "switching a monitor");
-        operate1();
+        operateSouth();
 
     }
-    public  void operate1() {
+    public  void operateSouth() {
         long startTime = System.currentTimeMillis();
         long elapsedTime = 0l;
         while (elapsedTime < 2000) {
             elapsedTime = (new Date()).getTime() - startTime;
-            synchronized (tunnel1) {
+            synchronized (tunnelSouth) {
                 System.out.println("Train " + getId() + " South tunnel in thread "
                         + Thread.currentThread().getName());
                 try {
@@ -66,6 +73,6 @@ public class Train implements Runnable{
             }
         }
         System.out.println("Train " + getId() + "switching a monitor");
-        operate();
+        operateNorth();
     }
 }
